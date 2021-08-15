@@ -34,7 +34,10 @@ import Charts from "../../pages/charts";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
-import Neworder from "../../pages/neworder/Neworder";
+import Newmessage from "../../pages/newmessage/Newmessage";
+import Report from "../../pages/report/report";
+import Newinquiry from "../../pages/newinquiry/Newinquiry";
+import InquiryReports from "pages/inquiryreports/inquiryreports";
 
 function Layout(props) {
   var classes = useStyles();
@@ -55,17 +58,9 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/app/dashboard" component={Dashboard} />
-              <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
-              <Route path="/app/neworder" component={Neworder} />
-              <Route
-                exact
-                path="/app/ui"
-                render={() => <Redirect to="/app/ui/icons" />}
-              />
-              <Route path="/app/ui/maps" component={Maps} />
-              <Route path="/app/ui/icons" component={Icons} />
-              <Route path="/app/ui/charts" component={Charts} />
+              <Route path="/app/newmessage" component={Newmessage} />
+              <Route path="/app/inquiryreports" component={InquiryReports} />
+              <Route path="/app/newinquiry" component={Newinquiry} />
             </Switch>
             <Box
               mt={5}

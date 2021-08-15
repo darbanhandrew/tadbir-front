@@ -1,20 +1,20 @@
 import React from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-
+import './App.css';
 // components
 import Layout from "./Layout";
 
 // pages
 import Error from "../pages/error";
 import Login from "../pages/login";
-
+import { pdfjs } from 'react-pdf';
 // context
 import { useUserState } from "../context/UserContext";
 
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
-
+  pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.js';
   return (
     <HashRouter>
       <Switch>

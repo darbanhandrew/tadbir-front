@@ -26,7 +26,9 @@ const overrides = {
 };
 
 const themes = {
-  default: createMuiTheme({ ...defaultTheme, ...overrides, direction : 'rtl' }),
+  default: createMuiTheme({ ...defaultTheme, ...overrides, direction : 'rtl',   typography:{
+    fontFamily: '"IRANSans"',
+  } }),
 };
 
 export default themes;

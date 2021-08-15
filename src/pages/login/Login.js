@@ -21,20 +21,34 @@ import google from "../../images/google.svg";
 
 // context
 import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { LOGIN_MUTATION } from "context/UserMutations";
+import { useMutation } from "@apollo/client";
 
 function Login(props) {
   var classes = useStyles();
 
   // global
   var userDispatch = useUserDispatch();
-
+  const [login] =useMutation(LOGIN_MUTATION,{
+    onCompleted(data){
+      loginUser(
+        userDispatch,
+        loginValue,
+        passwordValue,
+        props.history,
+        setIsLoading,
+        setError,
+        data
+      )
+    }
+  })
   // local
   var [isLoading, setIsLoading] = useState(false);
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
   var [nameValue, setNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
-  var [passwordValue, setPasswordValue] = useState("password");
+  var [loginValue, setLoginValue] = useState("0018030602");
+  var [passwordValue, setPasswordValue] = useState("09372611685");
 
   return (
     <Grid container className={classes.container}>
@@ -112,14 +126,16 @@ function Login(props) {
                       loginValue.length === 0 || passwordValue.length === 0
                     }
                     onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
+                      login({variables:{username:loginValue,password:passwordValue}})
+                      // loginUser(
+                      //   userDispatch,
+                      //   loginValue,
+                      //   passwordValue,
+                      //   props.history,
+                      //   setIsLoading,
+                      //   setError,
+                      //   login
+                      // )
                     }
                     variant="contained"
                     color="primary"

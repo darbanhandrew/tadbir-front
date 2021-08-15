@@ -19,7 +19,7 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import classNames from "classnames";
-
+import { useUserState } from "../../context/UserContext";
 // styles
 import useStyles from "./styles";
 
@@ -104,6 +104,7 @@ export default function Header(props) {
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
+  const context = useUserState();
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -137,10 +138,10 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          React Material Admin
+         داشبرد مدیریتی ژنیتو 
         </Typography>
         <div className={classes.grow} />
-        <Button component={Link} href="https://flatlogic.com/templates/react-material-admin-full" variant={"outlined"} color={"secondary"} className={classes.purchaseBtn}>Unlock full version</Button>
+        {/* <Button component={Link} href="https://flatlogic.com/templates/react-material-admin-full" variant={"outlined"} color={"secondary"} className={classes.purchaseBtn}>Unlock full version</Button> */}
         <div
           className={classNames(classes.search, {
             [classes.searchFocused]: isSearchOpen,
@@ -155,14 +156,14 @@ export default function Header(props) {
             <SearchIcon classes={{ root: classes.headerIcon }} />
           </div>
           <InputBase
-            placeholder="Search…"
+            placeholder="جستجو..."
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
           />
         </div>
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-haspopup="true"
           aria-controls="mail-menu"
@@ -195,7 +196,7 @@ export default function Header(props) {
           >
             <MailIcon classes={{ root: classes.headerIcon }} />
           </Badge>
-        </IconButton>
+        </IconButton> */}
         <IconButton
           aria-haspopup="true"
           color="inherit"
@@ -289,18 +290,18 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              John Smith
+              {context.fullName}
             </Typography>
             <Typography
               className={classes.profileMenuLink}
               component="a"
               color="primary"
-              href="https://flatlogic.com"
+              href="https://genito.ir"
             >
-              Flalogic.com
+             genito.ir
             </Typography>
           </div>
-          <MenuItem
+          {/* <MenuItem
             className={classNames(
               classes.profileMenuItem,
               classes.headerMenuItem,
@@ -323,7 +324,7 @@ export default function Header(props) {
             )}
           >
             <AccountIcon className={classes.profileMenuIcon} /> Messages
-          </MenuItem>
+          </MenuItem> */}
           <div className={classes.profileMenuUser}>
             <Typography
               className={classes.profileMenuLink}

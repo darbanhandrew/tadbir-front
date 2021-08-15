@@ -8,6 +8,7 @@ import OrderSpanningTable from './components/OrderSpanningTable/OrderSpanningTab
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    justifyContent:'center',  
   },
   paper: {
     padding: theme.spacing(2),
@@ -26,7 +27,7 @@ export default function Neworder() {
         <Grid item xs={12}>
         <PageTitle title="New Order"/>,
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} justify>
           <OrderAccordion/>
         </Grid>
         <Grid item xs={6}>

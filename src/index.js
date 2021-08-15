@@ -5,6 +5,8 @@ import { CssBaseline } from "@material-ui/core";
 
 
 
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+
 import Themes from "./themes";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
@@ -18,26 +20,37 @@ import {
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { createUploadLink } from "apollo-upload-client";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+const getToken = () => {
+  const token = localStorage.getItem('id_token')
+  return token
+}
 const client = new ApolloClient({
-  uri: 'http://risos.hadeth.ir/graphql/',
+  link: createUploadLink({
+    uri: "http://localhost:8000/graphql",
+    headers: {
+      "Authorization": getToken() ? `JWT ${getToken()}` : "",
+    }
+  }),
   cache: new InMemoryCache()
 });
 
 ReactDOM.render(
+
   <ApolloProvider client={client}>
     <StylesProvider jss={jss}>
-  <LayoutProvider>
-    <UserProvider>
-      <ThemeProvider theme={Themes.default}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </UserProvider>
-  </LayoutProvider>
-  </StylesProvider>
+      <LayoutProvider>
+        <UserProvider>
+          <ThemeProvider theme={Themes.default}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+        </UserProvider>
+      </LayoutProvider>
+    </StylesProvider>
   </ApolloProvider>,
   document.getElementById("root"),
 );
